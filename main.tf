@@ -32,3 +32,16 @@ resource "helm_release" "argocd" {
   repository = "https://argoproj.github.io/argo-helm"
   namespace  = kubernetes_namespace.example.metadata[0].name
 }
+
+terraform {
+  required_providers {
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = ">= 2.0"  # This will make sure you're using a version that's compatible
+    }
+    helm = {
+      source = "hashicorp/helm"
+      version = ">= 2.0"  # This will make sure you're using a version that's compatible
+    }
+  }
+}
