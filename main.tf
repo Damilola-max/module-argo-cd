@@ -2,7 +2,7 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(var.kubernetes_cluster_cert_data)
   host                   = var.kubernetes_cluster_endpoint
   exec {
-    api_version = "client.authentication.k8s.io/v1beta1" # This is the correct version
+    api_version = "client.authentication.k8s.io/v1beta1"  # Correct version
     command     = "aws-iam-authenticator"
     args        = ["token", "-i", var.kubernetes_cluster_name]
   }
@@ -13,7 +13,7 @@ provider "helm" {
     cluster_ca_certificate = base64decode(var.kubernetes_cluster_cert_data)
     host                   = var.kubernetes_cluster_endpoint
     exec {
-      api_version = "client.authentication.k8s.io/v1beta1" # This is the correct version
+      api_version = "client.authentication.k8s.io/v1beta1"  # Correct version
       command     = "aws-iam-authenticator"
       args        = ["token", "-i", var.kubernetes_cluster_name]
     }
@@ -36,12 +36,12 @@ resource "helm_release" "argocd" {
 terraform {
   required_providers {
     kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = ">= 2.0" # This will make sure you're using a version that's compatible
+      source = "hashicorp/kubernetes
+      version = ">= 2.0"  # Ensure the latest version
     }
     helm = {
-      source  = "hashicorp/helm"
-      version = ">= 2.0" # This will make sure you're using a version that's compatible
+      source = "hashicorp/helm"
+      version = ">= 2.0"  # Ensure the latest version
     }
   }
 }
